@@ -29,6 +29,7 @@ def predict():
     print(data)
     if(data is not None):
         uni = data['institute']
+        print(uni)
         all_uni = univ_data()
         selectedUni = [x for x in all_uni if x.get(uni) is not None][0]
         selectedUniRating = selectedUni[uni]
@@ -40,9 +41,10 @@ def predict():
             "Research": [int(data.get('researched') == True)]
         }
         predict = read_regressors_and_predict(user_info)
-        return {"prediction" : "You have "+predict+" percent chance of getting into "+uni}
+        return {"prediction": "You have "+predict+" percent chance of getting into "+uni}
     else:
         return {"prediction": "Could not parse form. Try again"}
+
 
 @app.route('/feed_data/', methods=['POST', 'GET'])
 def send_feed_data():
